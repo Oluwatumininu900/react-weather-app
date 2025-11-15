@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 24 24">
+  <style>
+    .rotate {
+      animation: spin 1.2s ease-out 1;
+      transform-origin: center;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+
+  <!-- Black Sun Icon -->
+  <g class="rotate" fill="black">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="4" stroke="black" stroke-width="2"></line>
+    <line x1="12" y1="20" x2="12" y2="23" stroke="black" stroke-width="2"></line>
+    <line x1="1" y1="12" x2="4" y2="12" stroke="black" stroke-width="2"></line>
+    <line x1="20" y1="12" x2="23" y2="12" stroke="black" stroke-width="2"></line>
+    <line x1="4.2" y1="4.2" x2="6.5" y2="6.5" stroke="black" stroke-width="2"></line>
+    <line x1="17.5" y1="17.5" x2="19.8" y2="19.8" stroke="black" stroke-width="2"></line>
+    <line x1="4.2" y1="19.8" x2="6.5" y2="17.5" stroke="black" stroke-width="2"></line>
+    <line x1="17.5" y1="6.5" x2="19.8" y2="4.2" stroke="black" stroke-width="2"></line>
+  </g>
+</svg>

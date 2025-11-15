@@ -1,0 +1,99 @@
+/* Main Title */
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  color: #0a3dff; /* Blue */
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Daily item container */
+.daily-item {
+  background: linear-gradient(135deg, #0a3dff20, #ff002020); /* soft blue-red blend */
+  border: 1px solid #ffffff25;
+  border-radius: 16px;
+  height: 55px;
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 8px 20px;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.daily-item:hover {
+  transform: translateX(5px);
+  background: linear-gradient(135deg, #0a3dff35, #ff002035);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+/* Weather icon */
+.icon-small {
+  width: 40px;
+  height: 40px;
+  color: #0a3dff; /* Blue for consistency */
+}
+
+/* Day text */
+.day {
+  color: #0a0a0a;
+  flex: 1 1;
+  font-weight: 700;
+  margin-left: 15px;
+  font-size: 16px;
+}
+
+/* Weather description */
+.description {
+  flex: 1 1;
+  margin-right: 15px;
+  text-align: right;
+  color: #333;
+  text-transform: capitalize;
+}
+
+/* Min / Max temperature */
+.min-max {
+  font-weight: 700;
+  color: #ff0033; /* Red highlight */
+}
+
+/* ---------------------------------------- */
+/* DETAILS PANEL */
+/* ---------------------------------------- */
+
+.daily-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 20px;
+  padding: 15px 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  margin-top: 10px;
+  border-left: 4px solid #0a3dff; /* Blue accent */
+}
+
+/* Each detail line */
+.daily-details-grid-item {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  align-items: center;
+}
+
+/* Label (left) */
+.daily-details-grid-item label:first-child {
+  color: #555;
+  font-size: 14px;
+}
+
+/* Value (right) */
+.daily-details-grid-item label:last-child {
+  color: #111;
+  font-size: 15px;
+  font-weight: 600;
+}

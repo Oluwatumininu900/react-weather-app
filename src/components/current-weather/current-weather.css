@@ -1,0 +1,107 @@
+/* ====== WEATHER CARD ====== */
+.weather {
+    width: 330px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #1a73e8, #ff1744);
+    padding: 20px;
+    margin: 20px auto 0 auto;
+    color: #fff;
+
+    /* Modern shadow */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+
+    /* Smooth animation */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.weather:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* ====== TOP AND BOTTOM FLEX ====== */
+.top,
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ====== CITY NAME ====== */
+.city {
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 1px;
+    margin: 0;
+    text-shadow: 0 0 5px rgba(255,255,255,0.4);
+}
+
+/* ====== DESCRIPTION ====== */
+.weather-description {
+    font-size: 15px;
+    opacity: 0.9;
+    margin-top: 5px;
+    text-transform: capitalize;
+}
+
+/* ====== ICON ====== */
+.weather-icon,
+.daily-icon {
+    width: 100px;
+}
+
+/* ====== TEMPERATURE ====== */
+.temprature {
+    font-size: 70px;
+    font-weight: 700;
+    margin: 10px 0;
+    letter-spacing: -4px;
+
+    /* Blue → Red gradient text */
+    background: linear-gradient(90deg, #ffffff, #d4e3ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ====== DETAILS BOX ====== */
+.details {
+    width: 100%;
+    padding-left: 10px;
+    padding-top: 10px;
+    border-left: 2px solid rgba(255,255,255,0.4);
+}
+
+/* Row layout */
+.parameter-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+}
+
+/* Label text */
+.parameter-label {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Value text */
+.parameter-value {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 400px) {
+    .weather {
+        width: 90%;
+    }
+
+    .temprature {
+        font-size: 58px;
+    }
+
+    .city {
+        font-size: 20px;
+    }
+}
