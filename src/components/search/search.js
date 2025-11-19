@@ -4,6 +4,7 @@ import { GEO_API_URL, geoApiOptions } from "../../api";
 
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
+  const [searchMessage, setSearchMessage] = useState(""); // NEW
 
   const loadOptions = async (inputValue) => {
     try {
@@ -16,8 +17,18 @@ const Search = ({ onSearchChange }) => {
 
       if (!result.data || !Array.isArray(result.data)) {
         console.warn("Invalid Geo API format:", result);
+        setSearchMessage("Something went wrong. Try again.");
         return { options: [] };
       }
+
+      // If API returns empty list (e.g., Ogun)
+      if (result.data.length === 0) {
+        setSearchMessage("Location not found. Try another name.");
+        return { options: [] };
+      }
+
+      // Clear message if data exists
+      setSearchMessage("");
 
       const options = result.data.map((city) => ({
         value: `${city.latitude} ${city.longitude}`,
@@ -25,8 +36,10 @@ const Search = ({ onSearchChange }) => {
       }));
 
       return { options };
+
     } catch (err) {
       console.error("Error fetching cities:", err);
+      setSearchMessage("Network error. Please check connection.");
       return { options: [] };
     }
   };
@@ -37,13 +50,22 @@ const Search = ({ onSearchChange }) => {
   };
 
   return (
-    <AsyncPaginate
-      placeholder="Search for city"
-      debounceTimeout={600}
-      value={search}
-      onChange={handleOnChange}
-      loadOptions={loadOptions}
-    />
+    <div>
+      <AsyncPaginate
+        placeholder="Search for city"
+        debounceTimeout={600}
+        value={search}
+        onChange={handleOnChange}
+        loadOptions={loadOptions}
+      />
+
+      {/* SHOW ERROR MESSAGE BELOW SEARCH BAR */}
+      {searchMessage && (
+        <p style={{ color: "red", marginTop: "8px", fontSize: "14px" }}>
+          {searchMessage}
+        </p>
+      )}
+    </div>
   );
 };
 
