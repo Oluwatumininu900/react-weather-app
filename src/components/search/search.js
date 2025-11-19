@@ -4,30 +4,36 @@ import { GEO_API_URL, geoApiOptions } from "../../api";
 
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
-  const [searchMessage, setSearchMessage] = useState(""); // NEW
+  const [searchMessage, setSearchMessage] = useState("");
 
   const loadOptions = async (inputValue) => {
+    // Clear previous message immediately when user types
+    setSearchMessage("");
+
+    if (!inputValue || inputValue.length < 1) {
+      return { options: [] };
+    }
+
     try {
       const response = await fetch(
         `${GEO_API_URL}/v1/geo/cities?minPopulation=1000000&namePrefix=${inputValue}`,
         geoApiOptions
       );
       const result = await response.json();
-      console.log("Geo API result:", result);
 
+      // Invalid API response
       if (!result.data || !Array.isArray(result.data)) {
-        console.warn("Invalid Geo API format:", result);
         setSearchMessage("Something went wrong. Try again.");
         return { options: [] };
       }
 
-      // If API returns empty list (e.g., Ogun)
+      // No city found (like Ogun)
       if (result.data.length === 0) {
         setSearchMessage("Location not found. Try another name.");
         return { options: [] };
       }
 
-      // Clear message if data exists
+      // Valid results → clear message
       setSearchMessage("");
 
       const options = result.data.map((city) => ({
@@ -36,10 +42,8 @@ const Search = ({ onSearchChange }) => {
       }));
 
       return { options };
-
     } catch (err) {
-      console.error("Error fetching cities:", err);
-      setSearchMessage("Network error. Please check connection.");
+      setSearchMessage("Network error. Please try again.");
       return { options: [] };
     }
   };
@@ -47,6 +51,8 @@ const Search = ({ onSearchChange }) => {
   const handleOnChange = (searchData) => {
     setSearch(searchData);
     onSearchChange(searchData);
+    // Clear message when user selects a city
+    setSearchMessage("");
   };
 
   return (
@@ -57,14 +63,12 @@ const Search = ({ onSearchChange }) => {
         value={search}
         onChange={handleOnChange}
         loadOptions={loadOptions}
+        // Add key here to force re-render when input changes
+        key={search ? search.value : "search-input"}
       />
 
       {/* SHOW ERROR MESSAGE BELOW SEARCH BAR */}
-      {searchMessage && (
-        <p style={{ color: "red", marginTop: "8px", fontSize: "14px" }}>
-          {searchMessage}
-        </p>
-      )}
+      {searchMessage && <p>{searchMessage}</p>}
     </div>
   );
 };
